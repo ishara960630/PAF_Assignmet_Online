@@ -118,6 +118,18 @@
 
 <script>
     var SERVER_URL = "http://localhost:8010";
+    var id = $("#txtCustomerId").val();
+    var name = $("#txtCustomerName").val();
+    var address = $("#txtCustomerAddress").val();
+    if(id == '') {
+        $('#id').next().show();
+    }if(name== '') {
+        $('#name').next().show();
+    }if(address == '') {
+        $('#address').next().show();
+    } if(IsEmail(address)==false){
+        $('#invalid_email').show();
+    }
         if ($("#txtCustomerId").attr("disabled")){
             var customer = {
                 id: $("#txtCustomerId").val(),
@@ -160,6 +172,7 @@
             });
         }
     });
+
     $('button[type="reset"]').click(function(){
         $("#tblCustomers tbody tr").removeClass("selected-row");
         $("#txtCustomerId").attr("disabled",false);
@@ -191,7 +204,6 @@
                                 <td>${customer.id}</td>
                                    <td>${customer.name}</td>
                                 <td>${customer.address}</td>
-                                <td>${customer.email}</td>
                                 <td><button type="button" class="btn btn-success delete">Delete</button></td>
                             </tr>`;
                 $("#tblCustomers tbody").append(html);
